@@ -1,3 +1,5 @@
+//aprendendo a parte de composicao
+
 package application;
 
 import java.text.ParseException;
@@ -23,7 +25,6 @@ public class Program {
 		System.out.println("Enter cliente data:");
 		System.out.print("Name: ");
 		String name = sc.nextLine();
-		//sc.nextLine();
 		System.out.print("Email: ");
 		String email = sc.nextLine();
 		System.out.print("Birth date (DD/MM/YYYY): ");
@@ -50,21 +51,14 @@ public class Program {
 			System.out.print("Quantity: ");
 			int quantity = sc.nextInt();
 			
-			OrderItem orderItem = new OrderItem(quantity, price, new Product(productName, price));
-			
-			order.addItem(orderItem);
+			Product pro = new OrderItem(productName, price, quantity);
+			//Polimorfismo
+			order.addItem(pro);
 		}
 		
 		System.out.println();
-		System.out.println("ORDER SUMMARY: ");
-		System.out.println(order.toString());
-		System.out.println(order.getClient());
-		System.out.println("Order items:");
+		System.out.println(order);
 		
-		for(OrderItem o : order.getItems()) {
-			System.out.println(o.toString());
-		}
-		System.out.println("Total price: $" + order.total());
 		sc.close();
 	}
 
