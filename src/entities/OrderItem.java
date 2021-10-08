@@ -1,14 +1,27 @@
 package entities;
 
-public class OrderItem extends Product {
+public class OrderItem {
 	
+	private Double price;
 	private Integer quantity;
+	
+	private Product product;
 
 	public OrderItem() {
 	}
-	public OrderItem(String name, Double price, Integer quantity) {
-		super(name, price);
+	
+	public OrderItem(Double price, Integer quantity, Product product) {
+		this.product = product;
+		this.price = price;
 		this.quantity = quantity;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 	public Integer getQuantity() {
@@ -19,7 +32,26 @@ public class OrderItem extends Product {
 		this.quantity = quantity;
 	}
 
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	public Double subTotal() {
-		return super.getPrice()*quantity;
+		return price*quantity;
+	}
+	
+	@Override
+	public String toString() {
+		return product.getName() 
+			 + ", $"
+			 + String.format("%.2f", price)
+			 + ", Quantity: "
+			 + quantity
+			 + ", Subtotal: $"
+			 + String.format("%.2f", subTotal());
 	}
 }

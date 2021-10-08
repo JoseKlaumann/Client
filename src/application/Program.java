@@ -37,7 +37,7 @@ public class Program {
 		
 		Order order = new Order(new Date(), OrderStatus.valueOf(status) ,new Client(name, email, birthDate));
 		
-		System.out.print("How many items to this order?");	
+		System.out.print("How many items to this order? ");	
 		int n = sc.nextInt();
 		
 		for (int i = 0; i < n; i++) {
@@ -51,8 +51,7 @@ public class Program {
 			System.out.print("Quantity: ");
 			int quantity = sc.nextInt();
 			
-			Product pro = new OrderItem(productName, price, quantity);
-			//Polimorfismo
+			OrderItem pro = new OrderItem(price, quantity, new Product(productName, price));
 			order.addItem(pro);
 		}
 		

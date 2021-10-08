@@ -13,7 +13,7 @@ public class Order {
 	private OrderStatus status;
 	
 	private Client client;
-	private List<Product> items = new ArrayList<>();
+	private List<OrderItem> items = new ArrayList<>();
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	
@@ -50,23 +50,22 @@ public class Order {
 		this.client = client;
 	}
 
-	public List<Product> getItems() {
+	public List<OrderItem> getItems() {
 		return items;
 	}
 	
-	public void addItem(Product pro) {
+	public void addItem(OrderItem pro) {
 		items.add(pro);
 	}
 	
-	public void removeItem(Product item) {
+	public void removeItem(OrderItem item) {
 		items.remove(item);
 	}
 	
 	public Double total() {
 		Double sum = 0.0;
-		for(Product o : items) {
-			//foi necessario fazer o downcasting da supercalsse para a subclasse para conseguir usar o metodo de subtotal
-		    sum += ((OrderItem) o).subTotal();
+		for(OrderItem o : items) {
+		    sum += o.subTotal();
 		}
 		return sum;
 	}
@@ -81,7 +80,7 @@ public class Order {
 		sb.append(status + "\n");
 		sb.append(client + "\n");
 		sb.append("Order items:\n");
-		for(Product item : items) {
+		for(OrderItem item : items) {
 			sb.append(item + "\n");
 		}
 		sb.append("Total price: $");
